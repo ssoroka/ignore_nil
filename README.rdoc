@@ -1,0 +1,29 @@
+= ANSI
+
+== DESCRIPTION
+
+ignore_nil lets you happily ignore nil methods on long method chains.  Keeps code pretty and much safer than "rescue nil", since it only catches NoMethodError on nil objects.
+
+ignore_nil {} will either return the last thing evaluated in the block, or nil if a NoMethodError is raised calling a method on a nil object.  Any other exceptions raised in the block are not handled, and left for the application to resolve.
+
+== INSTALLATION
+
+as a gem:
+  sudo gem install ssoroka-ignore_nil
+
+as a plugin:
+  script/plugin install git://github.com/ssoroka/ignore_nil.git
+  
+== USAGE
+
+  ignore_nil { user.profile.photo }
+  
+which is much cleaner than, say,
+
+  user && user.profile && user.profile.photo
+  
+and much much safer than
+
+  user.profile.photo rescue nil
+  
+which will eat any error, even if it's one you really want to see.

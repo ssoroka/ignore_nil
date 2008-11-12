@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.description = %q{ignore_nil lets you happily ignore nil methods on long method chains.  Keeps code pretty and much safer than "rescue nil", since it only catches NoMethodError on nil objects}
   s.email = %q{ssoroka78@gmail.com}
   s.extra_rdoc_files = ["lib/ignore_nil.rb", "README.rdoc"]
-  s.files = ["init.rb", "lib/ignore_nil.rb", "Rakefile", "README.rdoc", "Manifest", "ignore_nil.gemspec"]
+  s.files = ["ignore_nil.gemspec", "init.rb", "lib/ignore_nil.rb", "Manifest", "Rakefile", "README.rdoc", "test/ignore_nil_test.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/ssoroka/ignore_nil}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Ignore_nil", "--main", "README.rdoc"]
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{ignore_nil}
   s.rubygems_version = %q{1.2.0}
   s.summary = %q{ignore_nil lets you happily ignore nil methods on long method chains.  Keeps code pretty and much safer than "rescue nil", since it only catches NoMethodError on nil objects}
+  s.test_files = ["test/ignore_nil_test.rb"]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

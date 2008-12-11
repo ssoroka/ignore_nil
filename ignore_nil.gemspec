@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = %q{ignore_nil}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Steven Soroka"]
-  s.date = %q{2008-11-12}
+  s.date = %q{2008-12-11}
   s.description = %q{ignore_nil lets you happily ignore nil methods on long method chains.  Keeps code pretty and much safer than "rescue nil", since it only catches NoMethodError on nil objects}
   s.email = %q{ssoroka78@gmail.com}
   s.extra_rdoc_files = ["lib/ignore_nil.rb", "README.rdoc"]

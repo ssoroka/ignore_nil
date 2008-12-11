@@ -23,4 +23,11 @@ class IgnoreNilTest < Test::Unit::TestCase
     }
   end
   
+  def test_from_inside_map
+    assert_nil ignore_nil { [1,2,3,nil].map{|i| i * 3 } }
+  end
+
+  def test_whiny_nil
+    assert_nil ignore_nil { raise RuntimeError.new("Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id") }
+  end
 end

@@ -27,3 +27,15 @@ and much much safer than
   user.profile.photo rescue nil
   
 which will eat any error, even if it's one you really want to see.
+
+== HELP!
+
+I really think this is much better than the new try() syntax in Rails 2.3.
+If you use and like this gem, please +1 it here:
+https://rails.lighthouseapp.com/projects/8994/tickets/2364-ignore_nil-as-a-better-alternative-to-try
+
+== AUTHOR
+
+Steven Soroka
+http://www.twitter.com/ssoroka
+http://blog.stevensoroka.ca

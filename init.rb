@@ -1,1 +1,1 @@
-require File.join(File.dirname(__FILE__),'lib','ignore_nil.rb')
+require File.join(File.dirname(__FILE__), 'lib', 'ignore_nil')

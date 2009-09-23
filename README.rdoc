@@ -2,40 +2,64 @@
 
 == DESCRIPTION
 
-ignore_nil lets you happily ignore nil methods on long method chains.  Keeps code pretty and much safer than "rescue nil", since it only catches NoMethodError on nil objects.
+ignore_nil lets you happily ignore nil methods on long method chains.  Keeps code pretty and much
+safer than "rescue nil", since it only catches NoMethodError on nil objects.
 
-ignore_nil {} will either return the last thing evaluated in the block, or nil if a NoMethodError is raised calling a method on a nil object.  Any other exceptions raised in the block are not handled, and left for the application to resolve.
+ignore_nil {} will either return the last thing evaluated in the block, or nil if a NoMethodError
+is raised calling a method on a nil object.  Any other exceptions raised in the block are not handled,
+and left for the application to resolve.  More details below.
 
 == INSTALLATION
 
 as a gem:
-  sudo gem install ssoroka-ignore_nil
+
+    sudo gem install ssoroka-ignore_nil
 
 as a plugin:
-  script/plugin install git://github.com/ssoroka/ignore_nil.git
+
+    script/plugin install git://github.com/ssoroka/ignore_nil.git
   
 == USAGE
 
-  ignore_nil { user.profile.photo }
+    ignore_nil { user.profile.photo }
   
 which is much cleaner than, say,
 
-  user && user.profile && user.profile.photo
+    user && user.profile && user.profile.photo
   
 and much much safer than
 
-  user.profile.photo rescue nil
+    user.profile.photo rescue nil
   
 which will eat any error, even if it's one you really want to see.
 
-== HELP!
+== TELL ME MORE!
 
-I really think this is much better than the new try() syntax in Rails 2.3.
-If you use and like this gem, please +1 it here:
-https://rails.lighthouseapp.com/projects/8994/tickets/2364-ignore_nil-as-a-better-alternative-to-try
+The plugin is really rather simple; here's the ignore_nil method:
+
+    def ignore_nil(&block)
+      begin
+        yield
+      rescue NoMethodError, RuntimeError => e
+        if (e.message =~ /You have a nil object when you didn't expect it/) ||
+            (e.message =~ /undefined method `.*?' for nil:NilClass/) || (e.message =~ /^Called id for nil/)
+          return nil
+        else
+          raise e
+        end
+      end
+    end
+
+What's interesting about this is it catches both NoMethodError and RuntimeError, both of which
+can occur if a method unexpectedly returned nil and you called a method on it, but *ONLY* if
+the error message matches!  This means legitimate NoMethodError and RuntimeError messages will
+not be bothered by ignore_nil, and will still raise in your application as you expect.
+
+I've used this in a production application since about mid/late 2008, I'd consider it very stable.
+Feedback welcome!
 
 == AUTHOR
 
 Steven Soroka
-http://www.twitter.com/ssoroka
-http://blog.stevensoroka.ca
+[@ssoroka](http://www.twitter.com/ssoroka)
+[http://blog.stevensoroka.ca](http://blog.stevensoroka.ca)

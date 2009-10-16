@@ -13,7 +13,7 @@ and left for the application to resolve.  More details below.
 
 as a gem:
 
-    sudo gem install ssoroka-ignore_nil
+    sudo gem install ignore_nil
 
 as a plugin:
 

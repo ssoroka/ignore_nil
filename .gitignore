@@ -1,2 +1,12 @@
 pkg
 doc
+LICENSE
+README.rdoc
+Rakefile
+ignore_nil.gemspec
+init.rb
+lib/ignore_nil.rb
+spec/ignore_nil_spec.rb
+spec/spec_helper.rb
+test/ignore_nil_test.rb
+Manifest
